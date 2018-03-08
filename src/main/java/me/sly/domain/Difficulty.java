@@ -1,0 +1,5 @@
+package me.sly.domain;
+
+public enum Difficulty {
+    EASY, MODERATE, HARD
+}

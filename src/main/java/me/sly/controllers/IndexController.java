@@ -1,32 +1,22 @@
 package me.sly.controllers;
 
-import me.sly.domain.Category;
-import me.sly.domain.UnitOfMeasure;
-import me.sly.repositories.CategoryRepository;
-import me.sly.repositories.UnitOfMeasureRepository;
+import me.sly.service.RecipeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Optional;
 
 @Controller
 public class IndexController {
-    private CategoryRepository categoryRepository;
-    private UnitOfMeasureRepository unitOfMeasureRepository;
 
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    RecipeService recipeService;
+
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @RequestMapping({"", "/", "/index"})
-    public String getIndexPage() {
-        Optional<Category> category = categoryRepository.findByDescription("Mexican");
-        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByDescription("Pinch");
-
-        System.out.println("cat = " + category.get().getId());
-        System.out.println("uom = " + unitOfMeasure.get().getId());
-
+    public String getIndexPage(Model model) {
+        model.addAttribute("recipes", recipeService.getRecipies());
         return "index";
     }
 }

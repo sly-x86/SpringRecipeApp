@@ -1,5 +1,7 @@
 package me.sly.service;
 
+import me.sly.converters.RecipeCommandToRecipe;
+import me.sly.converters.RecipeToRecipeCommand;
 import me.sly.domain.Recipe;
 import me.sly.repositories.RecipeRepository;
 import org.junit.Before;
@@ -18,13 +20,20 @@ import static org.mockito.Mockito.*;
 
 public class RecipeServiceImplTest {
     RecipeServiceImpl recipeService;
+
     @Mock
     RecipeRepository recipeRepository;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test

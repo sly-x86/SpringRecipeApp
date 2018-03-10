@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Recipie Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="" crossorigin="anonymous" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}">
+    <script href="/webjars/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="" crossorigin="anonymous" th:src="@{/webjars/popper.js/1.11.1/dist/popper.min.js}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="" crossorigin="anonymous" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
 </head>
 <body>
     <div class="container-fluid" style="margin-top: 20px">
@@ -23,18 +23,23 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Description</th>
+                                        <th>View</th>
                                     </tr>
                                     <tr th:remove="all">
-                                        <td th:text="${recipe.id}">123</td>
-                                        <td th:text="${recipe.description}">Tasty goodness 1</td>
+                                        <td>123</td>
+                                        <td>Tasty goodness 1</td>
+                                        <td><a href="#">View</a></td>
                                     </tr>
                                     <tr th:remove="all">
-                                        <td th:text="${recipe.id}">123</td>
-                                        <td th:text="${recipe.description}">Tasty goodness 2</td>
+                                        <td>123</td>
+                                        <td>Tasty goodness 2</td>
+                                        <td><a href="#">View</a></td>
                                     </tr>
-                                    <tr th:each="recipe: ${recipes}">
+                                    <tr th:each="recipe : ${recipes}">
+                                        <!--/*thymesVar id="recipe" type="me.sly.domain.Recipe"*/-->
                                         <td th:text="${recipe.id}">123</td>
                                         <td th:text="${recipe.description}">Tasty goodness 3</td>
+                                        <td><a href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">View</a></td>
                                     </tr>
                                 </thead>
                             </table>

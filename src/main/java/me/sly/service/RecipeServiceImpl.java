@@ -27,7 +27,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Set<Recipe> getRecipies() {
+    public Set<Recipe> getRecipes() {
         log.debug("I'm in the service - getting recipes");
 
         HashSet<Recipe> recipeSet = new HashSet<>();
@@ -46,6 +46,12 @@ public class RecipeServiceImpl implements RecipeService {
         }
 
         return recipeOptional.get();
+    }
+
+    @Override
+    @Transactional
+    public RecipeCommand findCommandById(Long id) {
+        return recipeToRecipeCommand.convert(findById(id));
     }
 
     @Override

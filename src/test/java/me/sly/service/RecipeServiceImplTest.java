@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.ui.Model;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -55,9 +54,9 @@ public class RecipeServiceImplTest {
         HashSet recipiesData = new HashSet();
         recipiesData.add(recipe);
 
-        when(recipeService.getRecipies()).thenReturn(recipiesData);
+        when(recipeService.getRecipes()).thenReturn(recipiesData);
 
-        Set<Recipe> recipes = recipeService.getRecipies();
+        Set<Recipe> recipes = recipeService.getRecipes();
         assertEquals(recipes.size(), 1);
 
         verify(recipeRepository, times(1)).findAll();
